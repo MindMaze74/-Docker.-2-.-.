@@ -60,6 +60,36 @@ networks:
 1. Создайте конфигурацию docker-compose для Prometheus с именем контейнера <ваши фамилия и инициалы>-netology-prometheus. 
 2. Добавьте необходимые тома с данными и конфигурацией (конфигурация лежит в репозитории в директории [6-04/prometheus](https://github.com/netology-code/sdvps-homeworks/tree/main/lecture_demos/6-04/prometheus) ).
 3. Обеспечьте внешний доступ к порту 9090 c докер-сервера.
+```
+docker-compose.yml
+version: '3'
+services:
+  prometheus:
+    container_name: StarcevDA-netology-prometheus
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alert_rules.yml:/etc/prometheus/alert_rules.yml
+      - prometheus_data:/prometheus
+
+    networks:
+      StarcevDA-my-netology-hw:
+        ipv4_address: 10.5.0.2
+
+volumes:
+  prometheus_data:
+    driver: local
+
+networks:
+  StarcevDA-my-netology-hw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
+```
 ![Скриншот-1](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/1.jpeg)
 ![Скриншот-2](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/2.jpeg)
 ---
