@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  prometheus:
+    container_name: StarcevDA-netology-prometheus
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alert_rules.yml:/etc/prometheus/alert_rules.yml
+      - prometheus_data:/prometheus
+
+    networks:
+      StarcevDA-my-netology-hw:
+        ipv4_address: 10.5.0.2
+
+volumes:
+  prometheus_data:
+    driver: local
+
+networks:
+  StarcevDA-my-netology-hw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
