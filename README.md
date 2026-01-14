@@ -44,7 +44,7 @@ volumes:
 
 
 networks:
-  <Старцев Д.А>-my-netology-hw:
+  StarcevDA-my-netology-hw:
     driver: bridge
     ipam:
       config:
