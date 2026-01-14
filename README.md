@@ -60,7 +60,8 @@ networks:
 1. Создайте конфигурацию docker-compose для Prometheus с именем контейнера <ваши фамилия и инициалы>-netology-prometheus. 
 2. Добавьте необходимые тома с данными и конфигурацией (конфигурация лежит в репозитории в директории [6-04/prometheus](https://github.com/netology-code/sdvps-homeworks/tree/main/lecture_demos/6-04/prometheus) ).
 3. Обеспечьте внешний доступ к порту 9090 c докер-сервера.
-
+![Скриншот-1](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/1.jpeg)
+![Скриншот-2](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/2.jpeg)
 ---
 
 ### Задание 4 
