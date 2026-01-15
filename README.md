@@ -277,7 +277,11 @@ admin_password = netology
 * docker-compose.yml **целиком**;
 * скриншот команды docker ps после запуске docker-compose.yml;
 * скриншот графика, постоенного на основе вашей метрики.
-
+![Скриншот-9](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/9.jpeg)
+![Скриншот-10](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/10.jpeg)
+![Скриншот-11](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/11.jpeg)
+![Скриншот-12](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/12.jpeg)
+![Скриншот-13](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/13.jpeg)
 ---
 
 ### Задание 8
