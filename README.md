@@ -277,6 +277,74 @@ admin_password = netology
 * docker-compose.yml **целиком**;
 * скриншот команды docker ps после запуске docker-compose.yml;
 * скриншот графика, постоенного на основе вашей метрики.
+```
+version: '3'
+
+services:
+  prometheus:
+    container_name: StarcevDA-netology-prometheus
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alert_rules.yml:/etc/prometheus/alert_rules.yml
+      - prometheus_data:/prometheus
+
+    networks:
+      StarcevDA-my-netology-hw:
+        ipv4_address: 10.5.0.2
+  pushgateway:
+    container_name: StarcevDA-netology-pushgateway
+    image: prom/pushgateway:latest
+    ports:
+      - "9091:9091"
+    volumes:
+      - pushgateway_data:/tmp/pushgateway
+    networks:
+      StarcevDA-my-netology-hw:
+        ipv4_address: 10.5.0.3
+  node-exporter:
+    container_name: StarcevDA-netology-node-exporter
+    image: prom/node-exporter:latest
+    ports:
+      - "9100:9100"
+    networks:
+      StarcevDA-my-netology-hw:
+        ipv4_address: 10.5.0.4
+  grafana:
+    container_name: StarcevDA-netology-grafana
+    image: grafana/grafana:latest
+    ports:
+      - "80:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=StarcevDA
+      - GF_SECURITY_ADMIN_PASSWORD=netology
+    volumes:
+      - grafana_data:/var/lib/grafana
+    
+    networks:
+      StarcevDA-my-netology-hw:
+        ipv4_address: 10.5.0.5
+        
+volumes:
+  prometheus_data:
+    driver: local
+  pushgateway_data:
+    driver: local
+  grafana_data:
+    driver: local
+  grafana_config:
+    driver: local
+
+networks:
+  StarcevDA-my-netology-hw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
+```
 ![Скриншот-9](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/9.jpeg)
 ![Скриншот-10](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/10.jpeg)
 ![Скриншот-11](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/11.jpeg)
