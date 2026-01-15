@@ -37,10 +37,12 @@ services:
     image: grafana/grafana:latest
     ports:
       - "80:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=StarcevDA
+      - GF_SECURITY_ADMIN_PASSWORD=netology
     volumes:
       - grafana_data:/var/lib/grafana
-      - grafana_config:/etc/grafana
-      - ./grafana/custom.ini:/etc/grafana/custom.ini:ro
+    
     networks:
       StarcevDA-my-netology-hw:
         ipv4_address: 10.5.0.5
