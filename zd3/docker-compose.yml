@@ -14,9 +14,28 @@ services:
     networks:
       StarcevDA-my-netology-hw:
         ipv4_address: 10.5.0.2
-
+  pushgateway:
+    container_name: StarcevDA-netology-pushgateway
+    image: prom/pushgateway:latest
+    ports:
+      - "9091:9091"
+    volumes:
+      - pushgateway_data:/tmp/pushgateway
+    networks:
+      StarcevDA-my-netology-hw:
+        ipv4_address: 10.5.0.3
+  node-exporter:
+    container_name: StarcevDA-netology-node-exporter
+    image: prom/node-exporter:latest
+    ports:
+      - "9100:9100"
+    networks:
+      StarcevDA-my-netology-hw:
+        ipv4_address: 10.5.0.4
 volumes:
   prometheus_data:
+    driver: local
+  pushgateway_data:
     driver: local
 
 networks:
