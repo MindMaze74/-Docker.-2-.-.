@@ -100,7 +100,55 @@ networks:
 
 1. Создайте конфигурацию docker-compose для Pushgateway с именем контейнера <ваши фамилия и инициалы>-netology-pushgateway. 
 2. Обеспечьте внешний доступ к порту 9091 c докер-сервера.
+``
+version: '3'
 
+services:
+  prometheus:
+    container_name: StarcevDA-netology-prometheus
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alert_rules.yml:/etc/prometheus/alert_rules.yml
+      - prometheus_data:/prometheus
+
+    networks:
+      StarcevDA-my-netology-hw:
+        ipv4_address: 10.5.0.2
+  pushgateway:
+    container_name: StarcevDA-netology-pushgateway
+    image: prom/pushgateway:latest
+    ports:
+      - "9091:9091"
+    volumes:
+      - pushgateway_data:/tmp/pushgateway
+    networks:
+      StarcevDA-my-netology-hw:
+        ipv4_address: 10.5.0.3
+  node-exporter:
+    container_name: StarcevDA-netology-node-exporter
+    image: prom/node-exporter:latest
+    ports:
+      - "9100:9100"
+    networks:
+      StarcevDA-my-netology-hw:
+        ipv4_address: 10.5.0.4
+volumes:
+  prometheus_data:
+    driver: local
+  pushgateway_data:
+    driver: local
+
+networks:
+  StarcevDA-my-netology-hw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
+```
 ---
 
 ### Задание 5 
