@@ -359,7 +359,9 @@ networks:
 1. Остановите и удалите все контейнеры одной командой.
 
 В качестве решения приложите скриншот консоли с проделанными действиями.
-
+![Скриншот-14](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/14.jpeg)
+![Скриншот-15](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/15.jpeg)
+![Скриншот-16](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/16.jpeg)
 ---
 
 ## Дополнительные задания* (со звёздочкой)
