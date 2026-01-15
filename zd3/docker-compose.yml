@@ -32,10 +32,27 @@ services:
     networks:
       StarcevDA-my-netology-hw:
         ipv4_address: 10.5.0.4
+  grafana:
+    container_name: StarcevDA-netology-grafana
+    image: grafana/grafana:latest
+    ports:
+      - "80:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - grafana_config:/etc/grafana
+      - ./grafana/custom.ini:/etc/grafana/custom.ini:ro
+    networks:
+      StarcevDA-my-netology-hw:
+        ipv4_address: 10.5.0.5
+        
 volumes:
   prometheus_data:
     driver: local
   pushgateway_data:
+    driver: local
+  grafana_data:
+    driver: local
+  grafana_config:
     driver: local
 
 networks:
