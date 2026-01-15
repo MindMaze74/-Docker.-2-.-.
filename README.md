@@ -159,9 +159,94 @@ networks:
 **Выполните действия:** 
 
 1. Создайте конфигурацию docker-compose для Grafana с именем контейнера <ваши фамилия и инициалы>-netology-grafana. 
+```
+docker-compose.yml конфиг к 5 заданию
+version: '3'
+
+services:
+  prometheus:
+    container_name: StarcevDA-netology-prometheus
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alert_rules.yml:/etc/prometheus/alert_rules.yml
+      - prometheus_data:/prometheus
+
+    networks:
+      StarcevDA-my-netology-hw:
+        ipv4_address: 10.5.0.2
+  pushgateway:
+    container_name: StarcevDA-netology-pushgateway
+    image: prom/pushgateway:latest
+    ports:
+      - "9091:9091"
+    volumes:
+      - pushgateway_data:/tmp/pushgateway
+    networks:
+      StarcevDA-my-netology-hw:
+        ipv4_address: 10.5.0.3
+  node-exporter:
+    container_name: StarcevDA-netology-node-exporter
+    image: prom/node-exporter:latest
+    ports:
+      - "9100:9100"
+    networks:
+      StarcevDA-my-netology-hw:
+        ipv4_address: 10.5.0.4
+  grafana:
+    container_name: StarcevDA-netology-grafana
+    image: grafana/grafana:latest
+    ports:
+      - "80:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=StarcevDA
+      - GF_SECURITY_ADMIN_PASSWORD=netology
+    volumes:
+      - grafana_data:/var/lib/grafana
+    
+    networks:
+      StarcevDA-my-netology-hw:
+        ipv4_address: 10.5.0.5
+        
+volumes:
+  prometheus_data:
+    driver: local
+  pushgateway_data:
+    driver: local
+  grafana_data:
+    driver: local
+  grafana_config:
+    driver: local
+
+networks:
+  StarcevDA-my-netology-hw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
+```
 2. Добавьте необходимые тома с данными и конфигурацией (конфигурация лежит в репозитории в директории [6-04/grafana](https://github.com/netology-code/sdvps-homeworks/blob/main/lecture_demos/6-04/grafana/custom.ini).
 3. Добавьте переменную окружения с путем до файла с кастомными настройками (должен быть в томе), в самом файле пропишите логин=<ваши фамилия и инициалы> пароль=netology.
+```
+честно не получилось подгрузить конфиг графаны на авторизацию сделал через 
+- GF_SECURITY_ADMIN_USER=StarcevDA
+- GF_SECURITY_ADMIN_PASSWORD=netology
+
+конфиг custom.ini
+[security]
+
+admin_user = StarcevDa
+admin_password = netology
+```
 4. Обеспечьте внешний доступ к порту 3000 c порта 80 докер-сервера.
+
+![Скриншот-6](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/6.jpeg)
+![Скриншот-7](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/7.jpeg)
+![Скриншот-8](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/8.jpeg)
+
 
 ---
 
