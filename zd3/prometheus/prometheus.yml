@@ -35,5 +35,8 @@ scrape_configs:
     static_configs:
       - targets: ["pushgateway:9091"]
   - job_name: 'grafana'
+    basic_auth:
+      username: 'metrics'
+      password: 'metrics123'
     static_configs:
       - targets: ['grafana:3000']
