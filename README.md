@@ -61,7 +61,7 @@ networks:
 2. Добавьте необходимые тома с данными и конфигурацией (конфигурация лежит в репозитории в директории [6-04/prometheus](https://github.com/netology-code/sdvps-homeworks/tree/main/lecture_demos/6-04/prometheus) ).
 3. Обеспечьте внешний доступ к порту 9090 c докер-сервера.
 ```
-docker-compose.yml
+docker-compose.yml конфиг к 3 заданию
 version: '3'
 services:
   prometheus:
@@ -101,6 +101,7 @@ networks:
 1. Создайте конфигурацию docker-compose для Pushgateway с именем контейнера <ваши фамилия и инициалы>-netology-pushgateway. 
 2. Обеспечьте внешний доступ к порту 9091 c докер-сервера.
 ```
+docker-compose.yml конфиг к 4 заданию
 version: '3'
 
 services:
@@ -150,7 +151,9 @@ networks:
           gateway: 10.5.0.1
 ```
 ---
-
+![Скриншот-3](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/3.jpeg)
+![Скриншот-4](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/4.jpeg)
+![Скриншот-5](https://github.com/MindMaze74/-Docker.-2-.-./blob/main/zd3/img/5.jpeg)
 ### Задание 5 
 
 **Выполните действия:** 
