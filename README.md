@@ -100,7 +100,7 @@ networks:
 
 1. Создайте конфигурацию docker-compose для Pushgateway с именем контейнера <ваши фамилия и инициалы>-netology-pushgateway. 
 2. Обеспечьте внешний доступ к порту 9091 c докер-сервера.
-``
+```
 version: '3'
 
 services:
